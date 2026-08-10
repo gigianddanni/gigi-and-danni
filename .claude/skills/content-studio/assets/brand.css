@@ -1,0 +1,193 @@
+/* ============================================================
+   GIGI & DANNI — infographic design system
+   Sized for a 1080px-wide canvas rendered at 2x.
+   Tokens mirror assets/css/styles.css on the site.
+   ============================================================ */
+
+@import url("brand-fonts.css");
+
+:root {
+  --plum: #3d2545;
+  --violet: #5a3870;
+  --gold: #f0b86e;
+  --lavender-mist: #f5eff8;
+  --ghost-white: #faf8fc;
+  --muted-plum: #6b4a7a;
+  --soft-lilac: #c8a8d8;
+  --light-lilac: #e8d5f0;
+  --medium-purple: #9b6bb0;
+
+  --pad: 92px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- The canvas. One per graphic, or one .slide per carousel page. --- */
+.canvas, .slide {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* content sits optically centred; .mark is pinned */
+  overflow: hidden;
+  background: linear-gradient(155deg, #3d2545 0%, #5a3870 68%, #6b4a7a 100%);
+  color: var(--lavender-mist);
+}
+
+/* Light variant — alternate deliberately inside a carousel, never randomly. */
+.canvas.light, .slide.light {
+  background: var(--ghost-white);
+  color: var(--plum);
+}
+
+/* Soft radial bloom, keeps flat gradients from looking dead. */
+.canvas::after, .slide::after {
+  content: "";
+  position: absolute;
+  width: 780px; height: 780px;
+  right: -280px; top: -300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240,184,110,0.20) 0%, rgba(240,184,110,0) 68%);
+  pointer-events: none;
+}
+.canvas.light::after, .slide.light::after {
+  background: radial-gradient(circle, rgba(155,107,176,0.16) 0%, rgba(155,107,176,0) 68%);
+}
+
+.body { position: relative; z-index: 1; }
+
+/* --- Typography --- */
+.eyebrow {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 34px;
+}
+.light .eyebrow { color: var(--medium-purple); }
+
+.hero {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 94px;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+.hero.sm { font-size: 72px; }
+.hero.xs { font-size: 58px; }
+
+.sub {
+  font-size: 33px;
+  line-height: 1.5;
+  color: var(--soft-lilac);
+  margin-top: 38px;
+  max-width: 28ch;
+}
+.light .sub { color: var(--muted-plum); }
+
+/* Gold is a highlight — one per graphic, on the thing that matters. */
+.gold { color: var(--gold); }
+.light .gold { color: var(--violet); }
+
+/* --- Numbered / bulleted lists --- */
+.list { list-style: none; margin-top: 46px; }
+.list li {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.3;
+  padding-left: 62px;
+  position: relative;
+  margin-bottom: 34px;
+}
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 22px;
+  width: 30px; height: 3px;
+  background: var(--gold);
+}
+.light .list li::before { background: var(--medium-purple); }
+
+.list.numbered { counter-reset: item; }
+.list.numbered li { padding-left: 78px; }
+.list.numbered li::before {
+  counter-increment: item;
+  content: counter(item);
+  top: 0;
+  width: auto; height: auto;
+  background: none;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.light .list.numbered li::before { color: var(--medium-purple); }
+
+/* --- Big stat --- */
+.stat { display: flex; align-items: baseline; gap: 26px; margin-top: 44px; }
+.stat .num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 168px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--gold);
+}
+.light .stat .num { color: var(--violet); }
+.stat .label { font-size: 32px; color: var(--soft-lilac); max-width: 12ch; line-height: 1.3; }
+.light .stat .label { color: var(--muted-plum); }
+
+/* --- Quote --- */
+.quote {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 66px;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+.quote::before { content: "\201C"; color: var(--gold); }
+.quote::after { content: "\201D"; color: var(--gold); }
+.light .quote::before, .light .quote::after { color: var(--medium-purple); }
+
+/* --- Two-column contrast --- */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 54px; margin-top: 48px; }
+.col h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 34px; font-weight: 700;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid rgba(240,184,110,0.4);
+}
+.col p { font-size: 28px; line-height: 1.45; color: var(--soft-lilac); }
+.light .col p { color: var(--muted-plum); }
+.light .col h3 { border-bottom-color: rgba(155,107,176,0.35); }
+
+/* --- Footer mark, pinned so centred content never shifts it --- */
+.mark {
+  position: absolute;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: var(--pad);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  opacity: 0.72;
+}
+.mark .amp { color: var(--gold); }
+.light .mark .amp { color: var(--medium-purple); }
+.mark .page { letter-spacing: 0.14em; }

@@ -1,4 +1,12 @@
 .env
 .DS_Store
 node_modules/
-.claude/
+__pycache__/
+*.pyc
+
+# Keep the Content Studio skill tracked; ignore local Claude settings.
+.claude/*
+!.claude/skills/
+
+# Temp files written by the infographic renderer.
+studio/infographics/.render-*.tmp.html
