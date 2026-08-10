@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Studio — Gigi &amp; Danni</title>
+<style>
+  /* Palette mirrored from .claude/skills/content-studio/assets/brand-tokens.css
+     — that file is the source of truth. It's duplicated here because this page
+     is served from studio/ and can't reach outside it. Update both on a
+     rebrand. Variable names are legacy; the VALUES carry the 2026 black/pink
+     brand: --plum=ink, --gold=accent pink, --ghost-white=blush ground. */
+  :root{
+    --plum:#16161d; --violet:#201d26; --gold:#e62e6f; --lavender-mist:#f7f5f8;
+    --ghost-white:#fdf5f9; --muted-plum:#52525b; --soft-lilac:#f3c2d6;
+    --light-lilac:#fbe9f1; --medium-purple:#e62e6f;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--ghost-white); color:var(--plum);
+    line-height:1.6; padding:48px 32px 80px;
+  }
+  .wrap{max-width:1100px;margin:0 auto}
+  h1{font-family:'Archivo Black','Arial Black',system-ui,sans-serif;font-size:2.2rem;letter-spacing:-.02em}
+  h1 .amp{color:var(--gold)}
+  .sub{color:var(--muted-plum);margin-top:6px;font-size:.95rem}
+  h2{font-family:'Archivo Black','Arial Black',system-ui,sans-serif;font-size:1.15rem;
+     margin:44px 0 16px;letter-spacing:.02em}
+
+  .err{background:#fff;border:2px solid var(--gold);border-radius:14px;
+       padding:24px;margin-top:28px}
+  .err code{background:var(--light-lilac);padding:3px 8px;border-radius:6px;
+            font-size:.88rem;display:inline-block;margin-top:8px}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+         gap:14px;margin-top:24px}
+  .stat{background:linear-gradient(150deg,var(--plum),var(--violet));
+        color:var(--lavender-mist);border-radius:14px;padding:20px 22px}
+  .stat .n{font-family:'Archivo Black','Arial Black',system-ui,sans-serif;font-size:2.3rem;
+           font-weight:700;line-height:1;color:var(--gold)}
+  .stat .l{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+           opacity:.8;margin-top:8px}
+
+  .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+  .col{background:#fff;border-radius:14px;padding:16px;border:1px solid var(--light-lilac)}
+  .col h3{font-family:'Archivo Black','Arial Black',system-ui,sans-serif;font-size:.78rem;
+          letter-spacing:.14em;text-transform:uppercase;color:var(--medium-purple);
+          margin-bottom:12px}
+  .card{background:var(--ghost-white);border-left:3px solid var(--soft-lilac);
+        border-radius:8px;padding:11px 13px;margin-bottom:9px;font-size:.9rem}
+  .card.ready{border-left-color:var(--gold)}
+  .card.posted{border-left-color:var(--medium-purple)}
+  .card .meta{font-size:.74rem;color:var(--muted-plum);margin-top:5px;
+              display:flex;gap:10px;flex-wrap:wrap}
+  .empty{color:var(--muted-plum);font-size:.85rem;font-style:italic}
+
+  .swipe{background:#fff;border:1px solid var(--light-lilac);border-radius:14px;
+         padding:18px 20px;margin-bottom:12px}
+  .swipe .who{font-family:'Archivo Black','Arial Black',system-ui,sans-serif;font-weight:600}
+  .swipe .why{margin-top:8px;font-size:.92rem}
+  .swipe .why b{color:var(--medium-purple);letter-spacing:.08em;font-size:.72rem}
+  .swipe .txt{margin-top:10px;font-size:.86rem;color:var(--muted-plum);
+              border-left:2px solid var(--light-lilac);padding-left:12px}
+  .tags{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+  .tag{background:var(--light-lilac);color:var(--plum);border-radius:100px;
+       padding:3px 11px;font-size:.72rem;letter-spacing:.04em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Content Studio</h1>
+  <p class="sub">Gigi <span class="amp">&amp;</span> Danni — pipeline, swipe file, and performance at a glance.</p>
+  <div id="out"></div>
+</div>
+
+<script>
+const STATUSES = ['idea','draft','ready','posted','parked'];
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+async function load(path){
+  const res = await fetch(path, {cache:'no-store'});
+  if(!res.ok) throw new Error(path + ' → ' + res.status);
+  return res.json();
+}
+
+function engagement(p){
+  const m = p.metrics || {};
+  return (m.likes||0) + (m.comments||0) + (m.reposts||0);
+}
+
+function render(posts, swipes){
+  const out = document.getElementById('out');
+  const logged = posts.filter(p => (p.metrics||{}).likes !== undefined);
+  const avg = logged.length
+    ? Math.round(logged.reduce((a,p)=>a+engagement(p),0)/logged.length) : '—';
+
+  let html = `<div class="stats">
+    <div class="stat"><div class="n">${posts.length}</div><div class="l">in pipeline</div></div>
+    <div class="stat"><div class="n">${posts.filter(p=>p.status==='ready').length}</div><div class="l">ready to post</div></div>
+    <div class="stat"><div class="n">${swipes.length}</div><div class="l">swipes saved</div></div>
+    <div class="stat"><div class="n">${avg}</div><div class="l">avg engagement</div></div>
+  </div>`;
+
+  html += '<h2>Pipeline</h2><div class="board">';
+  for(const st of STATUSES){
+    const items = posts.filter(p => p.status === st)
+      .sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999'));
+    html += `<div class="col"><h3>${st}</h3>`;
+    html += items.length ? items.map(p => `
+      <div class="card ${esc(p.status)}">
+        ${esc(p.title)}
+        <div class="meta">
+          <span>${esc(p.date || 'no date')}</span>
+          <span>${esc(p.platform || '')}</span>
+          ${p.template ? `<span>T${esc(p.template)}</span>` : ''}
+          ${engagement(p) ? `<span>♥ ${engagement(p)}</span>` : ''}
+        </div>
+      </div>`).join('') : '<p class="empty">empty</p>';
+    html += '</div>';
+  }
+  html += '</div>';
+
+  html += '<h2>Swipe file</h2>';
+  html += swipes.length ? [...swipes].reverse().map(s => `
+    <div class="swipe">
+      <div class="who">${esc(s.author || 'unknown')}
+        <span style="font-weight:400;color:var(--muted-plum);font-size:.8rem">
+          ${esc(s.saved_at || '')}</span></div>
+      <div class="why"><b>WHY IT WORKED</b><br>${esc(s.why)}</div>
+      ${s.text ? `<div class="txt">${esc(s.text).slice(0,320)}${s.text.length>320?'…':''}</div>` : ''}
+      <div class="tags">${(s.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+    </div>`).join('')
+    : '<p class="empty">Nothing saved yet — paste a post you liked and ask Claude to save it.</p>';
+
+  out.innerHTML = html;
+}
+
+Promise.all([load('calendar/posts.json'), load('swipe/swipes.json')])
+  .then(([p, s]) => render(p.posts || [], s.swipes || []))
+  .catch(err => {
+    document.getElementById('out').innerHTML = `<div class="err">
+      <strong>Couldn't load the studio data.</strong>
+      <p style="margin-top:8px;font-size:.92rem">Browsers block <code>fetch</code> on
+      <code>file://</code> URLs, so this page needs to be served. From the repo root run:</p>
+      <code>python3 -m http.server 8000 --directory studio</code>
+      <p style="margin-top:12px;font-size:.92rem">then open
+      <a href="http://localhost:8000/dashboard.html">localhost:8000/dashboard.html</a>.</p>
+      <p style="margin-top:12px;font-size:.8rem;color:var(--muted-plum)">${esc(err.message)}</p>
+    </div>`;
+  });
+</script>
+</body>
+</html>

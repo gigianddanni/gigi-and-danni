@@ -1,0 +1,8 @@
+# Keep the Content Studio out of the public deployment.
+#
+# Vercel's zero-config static build serves the repo root, so without this the
+# studio would be fetchable on the live domain — voice profile, draft posts,
+# swipe file and performance numbers included. It is a local working directory,
+# not part of the website.
+studio/
+.claude/

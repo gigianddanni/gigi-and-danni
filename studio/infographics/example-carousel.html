@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+  Carousel starter. Copy to studio/infographics/<slug>.html and edit.
+  Render:  python3 .claude/skills/content-studio/scripts/render.py \
+             studio/infographics/<slug>.html --preset carousel
+  Produces <slug>-01.png, <slug>-02.png, ... — one per <section class="slide">.
+
+  Rules: slide 1 is the hook and nothing else. One idea per slide.
+  6-10 slides. Last slide is the ask, and only the ask.
+  Default ground is light; add class="dark" to individual slides to
+  alternate — deliberately, not randomly.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Carousel</title>
+  <link rel="stylesheet" href="../../.claude/skills/content-studio/assets/brand.css">
+</head>
+<body>
+
+<!-- 1 — HOOK. No logo, no intro, no context. -->
+<section class="slide">
+  <div class="body">
+    <div class="eyebrow">Swipe</div>
+    <h1 class="hero">Every missed call is a <span class="accent">paid job</span> walking off.</h1>
+  </div>
+  <div class="mark"><span>Gigi <span class="amp">&amp;</span> Danni</span><span class="page">01</span></div>
+</section>
+
+<!-- 2 — the problem, stated once -->
+<section class="slide dark">
+  <div class="body">
+    <div class="eyebrow">The problem</div>
+    <h2 class="hero sm">You're on the tools. The phone rings out.</h2>
+    <p class="sub">The caller doesn't leave a voicemail. They ring the next name on the list.</p>
+  </div>
+  <div class="mark"><span>Gigi <span class="amp">&amp;</span> Danni</span><span class="page">02</span></div>
+</section>
+
+<!-- 3 — a stat slide -->
+<section class="slide">
+  <div class="body">
+    <div class="eyebrow">The cost</div>
+    <div class="stat">
+      <div class="num">30s</div>
+      <div class="label">is all a caller waits</div>
+    </div>
+    <p class="sub">No answer by then and most callers are already dialling your competitor.</p>
+  </div>
+  <div class="mark"><span>Gigi <span class="amp">&amp;</span> Danni</span><span class="page">03</span></div>
+</section>
+
+<!-- 4 — a list slide -->
+<section class="slide">
+  <div class="body">
+    <div class="eyebrow">What an AI receptionist does</div>
+    <ul class="list numbered">
+      <li>Answers 24/7, in your name</li>
+      <li>Books the job in</li>
+      <li>Texts you the lead instantly</li>
+    </ul>
+  </div>
+  <div class="mark"><span>Gigi <span class="amp">&amp;</span> Danni</span><span class="page">04</span></div>
+</section>
+
+<!-- 5 — contrast slide -->
+<section class="slide dark">
+  <div class="body">
+    <div class="eyebrow">The difference</div>
+    <div class="cols">
+      <div class="col">
+        <h3>Voicemail</h3>
+        <p>"Leave a message." They don't. The lead is gone and you never know it existed.</p>
+      </div>
+      <div class="col">
+        <h3>AI receptionist</h3>
+        <p>A real conversation, a booked job, and the lead in your pocket before they hang up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="mark"><span>Gigi <span class="amp">&amp;</span> Danni</span><span class="page">05</span></div>
+</section>
+
+<!-- 6 — THE ASK. Only the ask. -->
+<section class="slide">
+  <div class="body">
+    <div class="eyebrow">Hear it yourself</div>
+    <h2 class="hero sm">Talk to <span class="accent">Gigi</span> — live.</h2>
+    <p class="sub">She answers on gigianddanni.com. Ask her anything a caller would.</p>
+    <div class="pill">Talk to Gigi — live</div>
+  </div>
+  <div class="mark"><span>Gigi <span class="amp">&amp;</span> Danni</span><span class="page">gigianddanni.com</span></div>
+</section>
+
+</body>
+</html>
