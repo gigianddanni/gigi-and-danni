@@ -40,25 +40,32 @@ Carousel rules that actually matter:
 
 ## Brand system
 
-These are the live tokens from `assets/css/styles.css`. Keep them in sync — if
-the site palette changes, update both.
+**All colours, fonts and canvas padding live in one file:
+`assets/brand-tokens.css`.** That is the file to edit when the branding
+changes — `brand.css` holds layout and components only and contains no
+hardcoded colour values, so a rebrand is a single-file edit.
 
-```css
---plum:          #3d2545;   /* primary dark, backgrounds, body text */
---violet:        #5a3870;   /* gradient partner to plum */
---gold:          #f0b86e;   /* accent — the only true highlight colour */
---lavender-mist: #f5eff8;   /* light text on dark */
---ghost-white:   #faf8fc;   /* light backgrounds */
---muted-plum:    #6b4a7a;   /* secondary text */
---soft-lilac:    #c8a8d8;
---light-lilac:   #e8d5f0;
---medium-purple: #9b6bb0;
-```
+Read `brand-tokens.css` rather than reproducing values here, so this document
+can't drift from what actually renders. When writing an infographic, always
+reference tokens (`var(--gold)`), never literal hexes — a graphic with a
+hardcoded colour silently survives the next rebrand and looks wrong.
 
-Type: **Space Grotesk** for headings (300–700), **Inter** for body (300–600).
-Both are embedded as base64 in the starter templates, so rendering works with no
+Two other places carry the palette and must be updated by hand to match,
+because CSS can't be shared across them:
+
+- `assets/css/styles.css` — the public site; its `:root` is the real brand
+  definition and `brand-tokens.css` mirrors it
+- `studio/dashboard.html` — inline, since it's served from `studio/`
+
+Fonts are embedded as base64 in `brand-fonts.css`, so rendering works with no
 network access. Don't swap them for a Google Fonts `<link>` — the renderer runs
-offline and you'll silently get Times New Roman.
+offline and you'll silently get Times New Roman. If the brand fonts change,
+edit the family list at the top of `scripts/embed_fonts.py` and regenerate:
+
+```bash
+python3 .claude/skills/content-studio/scripts/embed_fonts.py \
+  > .claude/skills/content-studio/assets/brand-fonts.css
+```
 
 ### Design rules
 

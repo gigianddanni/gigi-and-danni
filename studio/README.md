@@ -69,6 +69,26 @@ that strip:
 npx playwright install chromium-headless-shell
 ```
 
+## Rebranding
+
+Colours, fonts and spacing live in **one file**:
+
+```
+.claude/skills/content-studio/assets/brand-tokens.css
+```
+
+Edit it and every future graphic follows. `brand.css` contains no hardcoded
+colours, so nothing else needs touching there.
+
+Two other files carry the palette and have to be updated by hand to match,
+because CSS can't be shared across them — both say so in a comment:
+
+- `assets/css/styles.css` — the public website (the real brand definition)
+- `studio/dashboard.html` — inline, since it's served from `studio/`
+
+If the fonts change, edit the family list at the top of `embed_fonts.py` and
+regenerate `brand-fonts.css` (command in the file's header comment).
+
 ## Two things this deliberately doesn't do
 
 **It doesn't scrape LinkedIn.** Kleo's original extension overlaid and scraped

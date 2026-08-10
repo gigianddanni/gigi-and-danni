@@ -1,0 +1,52 @@
+/* ============================================================
+   BRAND TOKENS — single source of truth for the Content Studio
+   ============================================================
+
+   THIS IS THE FILE TO EDIT WHEN THE BRANDING CHANGES.
+
+   Everything the studio renders — infographics, carousels, the starter
+   templates — reads its colours from here. Change a value once and every
+   future graphic follows.
+
+   Two other places also carry the palette and must be updated to match,
+   because CSS cannot be shared across them:
+
+     1. assets/css/styles.css   — the public website. Its :root block is the
+                                  real brand definition; this file mirrors it.
+     2. studio/dashboard.html   — inline :root, because the dashboard is served
+                                  from studio/ and cannot reach this directory.
+
+   If fonts change, regenerate the embedded webfonts too:
+     python3 .claude/skills/content-studio/scripts/embed_fonts.py \
+       > .claude/skills/content-studio/assets/brand-fonts.css
+   (edit the URL at the top of that script to name the new families first)
+   ============================================================ */
+
+:root {
+  /* Core palette */
+  --plum: #3d2545;          /* primary dark — backgrounds, body text */
+  --violet: #5a3870;        /* gradient partner to plum */
+  --gold: #f0b86e;          /* accent — the ONLY true highlight colour */
+  --lavender-mist: #f5eff8; /* light text on dark grounds */
+  --ghost-white: #faf8fc;   /* light backgrounds */
+  --muted-plum: #6b4a7a;    /* secondary text */
+  --soft-lilac: #c8a8d8;
+  --light-lilac: #e8d5f0;
+  --medium-purple: #9b6bb0;
+
+  /* Derived — the dark canvas gradient */
+  --canvas-dark: linear-gradient(155deg, #3d2545 0%, #5a3870 68%, #6b4a7a 100%);
+
+  /* RGB triples for the two accents, so translucent bloom and hairline rules
+     can use rgba() and still follow a rebrand. Keep in sync with the hexes
+     above: --gold and --medium-purple respectively. */
+  --gold-rgb: 240, 184, 110;
+  --medium-purple-rgb: 155, 107, 176;
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Layout — canvas padding on a 1080px-wide graphic */
+  --pad: 92px;
+}
