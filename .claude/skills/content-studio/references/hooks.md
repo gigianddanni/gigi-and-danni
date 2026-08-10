@@ -18,6 +18,19 @@ reads like a hook. Rewrite it in the user's voice, using their actual specifics.
 
 ---
 
+## Pattern interrupt
+Open by stating something that violates an unwritten norm of your field, flatly
+and without apology. The reader stops because the sentence shouldn't be sayable.
+
+- `<Did the thing everyone says never to do>.`
+- `I <broke the standard rule>. It was the right call.`
+- `<Role> doesn't need <the thing everyone insists is essential>.`
+
+This is the highest-ceiling category and the easiest to get wrong. The norm you
+break has to be one your audience genuinely holds, and the post has to *earn*
+it — a pattern interrupt with no argument behind it reads as attention-seeking
+and costs trust.
+
 ## Contradiction
 Set up the reader's assumption, then break it.
 
@@ -90,3 +103,17 @@ Read line one alone. If a stranger who has never heard of the user would keep
 reading, it works. If it only works because they know the author, rewrite it.
 
 Then check it against the voice profile's **Never** list before shipping.
+
+## Every line is a hook
+
+The opener only buys the second line. The second line has to buy the third.
+Lara Acosta — Kleo's founder, 350k+ followers — treats every line as if it were
+its own hook, and it's the single most useful habit to copy from her.
+
+Practically: after drafting, read the post one line at a time and ask *"would I
+keep going?"* at each break. The first line where the answer is no is where
+readers stop, and everything after it may as well not exist. Cut or rewrite it —
+don't just tighten the opener and hope.
+
+This is also why one-idea-per-post matters. A post that changes subject gives
+the reader a natural place to leave.

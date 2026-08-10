@@ -46,13 +46,22 @@ The JSON holds metadata only. Full text goes in `studio/drafts/<slug>.md`, which
 `post add` links via the `draft` field. Keep them separate — it makes drafts
 diffable in git and keeps the JSON readable.
 
-## Cadence
+## Cadence and mix
 
 Don't let the calendar become a guilt machine. Two well-made posts a week beats
 five thin ones, and a thin post trains the voice profile on the wrong data.
 
-When planning a week, aim for a mix rather than five of the same template:
-one selling post, one authority post, one connection post is a healthy shape.
+Common working numbers among people who've actually grown on LinkedIn — Lara
+Acosta (Kleo's founder) among them — are **3–5 posts a week** on an **80/20
+split: 80% educational, 20% personal or inspirational**. Treat that as a
+starting shape to test, not a law. Danni's own logged performance overrides it
+the moment there's enough data to say otherwise.
+
+The 80/20 matters more than the frequency. All-educational reads as a
+newsletter nobody subscribed to; all-personal gives the reader no reason to
+follow. When planning a week, aim for a mix rather than five of the same
+template: one selling post, one authority post, one connection post is a
+healthy shape.
 
 ## Why logging matters
 

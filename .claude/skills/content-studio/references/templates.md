@@ -112,13 +112,37 @@ as arrogance.
 
 **Fails when:** one side is a strawman.
 
+## 11. SLAY
+> Hook: scene, confession, or pattern interrupt.
+>
+> Lara Acosta's signature structure — she's the founder of Kleo and built
+> 350k+ LinkedIn followers on it. Worth knowing because it's the most reliably
+> *teachable* shape on this list: **S**tory → **L**esson → **A**ctionable →
+> **Y**ou.
+
+1. **Story** — a personal, specific opening in 3–5 short lines.
+2. **Lesson** — distil it to *one* sentence. If it takes two, the story is
+   carrying more than one idea and should be split.
+3. **Actionable** — 3–5 concrete steps the reader can do this week.
+4. **You** — a direct question or CTA aimed at the reader.
+
+Target roughly 200 words. It works because it stacks four different jobs in one
+post: emotional engagement, proof of expertise, utility, and a reason to reply.
+
+**Fails when:** the story is generic (it must be *yours*, with a detail nobody
+else could invent), or the lesson is a platitude. The steps are what people save
+the post for — front-load specificity there.
+
+This is a good default when you don't know which template to use.
+
 ---
 
 ## Choosing
 
+- Not sure → 11 (SLAY). It's the safest default.
 - Selling something → 5, 8, 3
 - Building authority → 3, 6, 7
-- Building connection → 2, 9
+- Building connection → 2, 9, 11
 - Fast to write → 4, 10
 - Highest ceiling, hardest to write → 1, 3
 
