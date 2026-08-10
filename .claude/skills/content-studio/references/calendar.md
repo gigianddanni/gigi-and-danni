@@ -23,9 +23,9 @@ python3 .claude/skills/content-studio/scripts/studio.py post list --status draft
 
 # Add
 python3 .claude/skills/content-studio/scripts/studio.py post add \
-  --title "Why your AI keeps forgetting you" \
-  --date 2026-08-14 --platform linkedin --template 7 --hook contradiction \
-  --notes "ties to Gigi Method part 6"
+  --title "What a missed call actually costs a tradie" \
+  --date 2026-08-14 --platform linkedin --template 8 --hook number \
+  --notes "receptionist ROI angle — pair with the 30s stat graphic"
 
 # Move a stage
 python3 .claude/skills/content-studio/scripts/studio.py post status 7 ready

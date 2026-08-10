@@ -47,15 +47,15 @@ hardcoded colour values, so a rebrand is a single-file edit.
 
 Read `brand-tokens.css` rather than reproducing values here, so this document
 can't drift from what actually renders. When writing an infographic, always
-reference tokens (`var(--gold)`), never literal hexes — a graphic with a
+reference tokens (`var(--accent)`), never literal hexes — a graphic with a
 hardcoded colour silently survives the next rebrand and looks wrong.
 
-Two other places carry the palette and must be updated by hand to match,
-because CSS can't be shared across them:
-
-- `assets/css/styles.css` — the public site; its `:root` is the real brand
-  definition and `brand-tokens.css` mirrors it
-- `studio/dashboard.html` — inline, since it's served from `studio/`
+One other place carries a copy of the palette and must be updated by hand to
+match: `studio/dashboard.html` (inline, since it's served from `studio/`).
+Note that `assets/css/styles.css` in this repo still holds the OLD purple/gold
+site — the live gigianddanni.com was rebranded (2026: black/pink, AI
+receptionists) and deploys from elsewhere. `brand-tokens.css` follows the live
+site, not that file.
 
 Fonts are embedded as base64 in `brand-fonts.css`, so rendering works with no
 network access. Don't swap them for a Google Fonts `<link>` — the renderer runs
@@ -69,11 +69,15 @@ python3 .claude/skills/content-studio/scripts/embed_fonts.py \
 
 ### Design rules
 
-- **Gold is a highlight, not a background.** One gold element per graphic, on the
-  single thing that matters. Gold everywhere means nothing is emphasised.
-- **Dark plum ground, light text** is the house look. Light-ground variants exist
-  in the starters for contrast within a carousel — alternate deliberately, not
-  randomly.
+- **Pink is a highlight, not a background.** One accented element per graphic
+  (`class="accent"`), on the single thing that matters. Pink everywhere means
+  nothing is emphasised. The exception is the `.pill` CTA button, which is
+  solid pink by design — a pill slide should have no other accent.
+- **Light blush ground, near-black heavy uppercase headlines** is the house
+  look. A `class="dark"` variant exists for contrast within a carousel —
+  alternate deliberately, not randomly.
+- **Eyebrows are letter-spaced uppercase mono, always pink** — they're the
+  site's kicker style and do a lot of the brand recognition.
 - **Type scale is aggressive.** These are read at thumbnail size on a phone. Hero
   text at 72–110px on a 1080px canvas. If it looks too big on your screen, it's
   probably right.
@@ -85,5 +89,6 @@ python3 .claude/skills/content-studio/scripts/embed_fonts.py \
 ## Checking your work
 
 Render, then **Read the PNG**. Look for: text overflowing its container, fonts
-that fell back to a serif (means the base64 embed broke), gold used more than
-once, and whether the hero line is legible when you imagine it at 1/4 size.
+that fell back to a serif (means the base64 embed broke), pink used on more
+than one element, and whether the hero line is legible when you imagine it at
+1/4 size.

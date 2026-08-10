@@ -4,7 +4,8 @@ import base64, re, urllib.request, sys
 
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
 URL = ("https://fonts.googleapis.com/css2?"
-       "family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;600&display=swap")
+       "family=Archivo+Black&family=Space+Mono:wght@400;700"
+       "&family=Inter:wght@400;600&display=swap")
 
 
 def get(url, binary=False):

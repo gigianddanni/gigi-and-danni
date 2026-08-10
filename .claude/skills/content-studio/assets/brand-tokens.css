@@ -4,17 +4,21 @@
 
    THIS IS THE FILE TO EDIT WHEN THE BRANDING CHANGES.
 
-   Everything the studio renders — infographics, carousels, the starter
-   templates — reads its colours from here. Change a value once and every
-   future graphic follows.
+   Current brand (2026 rebrand, sampled from the live gigianddanni.com
+   homepage): AI receptionists & talking websites. Black + hot pink on a
+   pale blush ground. Heavy uppercase display type, monospace eyebrows.
+   Hex values are estimated from a screenshot of the live site — replace
+   with exact values if a brand sheet or the site CSS becomes available.
 
-   Two other places also carry the palette and must be updated to match,
-   because CSS cannot be shared across them:
+   Everything the studio renders reads its colours from here. Two other
+   places carry a copy and must be updated by hand to match, because CSS
+   cannot be shared across them:
 
-     1. assets/css/styles.css   — the public website. Its :root block is the
-                                  real brand definition; this file mirrors it.
-     2. studio/dashboard.html   — inline :root, because the dashboard is served
-                                  from studio/ and cannot reach this directory.
+     1. assets/css/styles.css   — the public website source in this repo
+                                  (NOTE: as of 2026-08-10 this file still
+                                  carries the OLD purple/gold brand; the
+                                  live site is deployed from elsewhere)
+     2. studio/dashboard.html   — inline :root, served from studio/
 
    If fonts change, regenerate the embedded webfonts too:
      python3 .claude/skills/content-studio/scripts/embed_fonts.py \
@@ -24,27 +28,29 @@
 
 :root {
   /* Core palette */
-  --plum: #3d2545;          /* primary dark — backgrounds, body text */
-  --violet: #5a3870;        /* gradient partner to plum */
-  --gold: #f0b86e;          /* accent — the ONLY true highlight colour */
-  --lavender-mist: #f5eff8; /* light text on dark grounds */
-  --ghost-white: #faf8fc;   /* light backgrounds */
-  --muted-plum: #6b4a7a;    /* secondary text */
-  --soft-lilac: #c8a8d8;
-  --light-lilac: #e8d5f0;
-  --medium-purple: #9b6bb0;
+  --ink: #16161d;           /* near-black — headlines, dark grounds */
+  --accent: #e62e6f;        /* hot pink — THE brand colour; buttons, key words */
+  --paper: #ffffff;
+  --blush: #fbe9f1;         /* pale pink — light ground tint */
+  --body-text: #52525b;     /* grey body copy on light grounds */
+  --paper-dim: #f6f4f7;     /* off-white for cards/secondary surfaces */
+  --on-dark: #f7f5f8;       /* text on dark grounds */
+  --on-dark-dim: #b9b3bf;   /* secondary text on dark grounds */
 
-  /* Derived — the dark canvas gradient */
-  --canvas-dark: linear-gradient(155deg, #3d2545 0%, #5a3870 68%, #6b4a7a 100%);
+  /* Derived canvases */
+  --canvas-light: linear-gradient(170deg, #fbe9f1 0%, #fdf5f9 55%, #ffffff 100%);
+  --canvas-dark: linear-gradient(165deg, #16161d 0%, #201d26 70%, #2a2230 100%);
 
-  /* RGB triples for the two accents, so translucent bloom and hairline rules
-     can use rgba() and still follow a rebrand. Keep in sync with the hexes
-     above: --gold and --medium-purple respectively. */
-  --gold-rgb: 240, 184, 110;
-  --medium-purple-rgb: 155, 107, 176;
+  /* RGB triples so translucent blooms and hairlines follow a rebrand */
+  --accent-rgb: 230, 46, 111;
+  --ink-rgb: 22, 22, 29;
 
-  /* Typography */
-  --font-heading: 'Space Grotesk', sans-serif;
+  /* Typography
+     - display: heavy uppercase headline face (site: Archivo Black or similar)
+     - mono:    letter-spaced uppercase eyebrows (site: Space Mono or similar)
+     - body:    workhorse sans */
+  --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
   --font-body: 'Inter', system-ui, sans-serif;
 
   /* Layout — canvas padding on a 1080px-wide graphic */

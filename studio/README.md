@@ -80,11 +80,12 @@ Colours, fonts and spacing live in **one file**:
 Edit it and every future graphic follows. `brand.css` contains no hardcoded
 colours, so nothing else needs touching there.
 
-Two other files carry the palette and have to be updated by hand to match,
-because CSS can't be shared across them — both say so in a comment:
-
-- `assets/css/styles.css` — the public website (the real brand definition)
-- `studio/dashboard.html` — inline, since it's served from `studio/`
+Current values follow the **2026 rebrand** (black + hot pink, heavy uppercase
+display type, AI receptionists positioning), sampled from a screenshot of the
+live site — swap in exact hexes if a brand sheet turns up. One other file
+carries a hand-synced copy: `studio/dashboard.html` (inline, served from
+`studio/`). Heads-up: `assets/css/styles.css` in this repo is still the OLD
+purple/gold site — the live gigianddanni.com deploys from somewhere else.
 
 If the fonts change, edit the family list at the top of `embed_fonts.py` and
 regenerate `brand-fonts.css` (command in the file's header comment).
